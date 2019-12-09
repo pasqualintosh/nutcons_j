@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-154203084-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-154203084-1");
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gradient Landing</title>
-    <link type="text/css" rel="stylesheet" href="./landing/normalize.css">
-    <link type="text/css" rel="stylesheet" href="./landing/main.css">
+    <link type="text/css" rel="stylesheet" href="./landing/normalize.css" />
+    <link type="text/css" rel="stylesheet" href="./landing/main.css" />
   </head>
   <body>
-
-      <main>
-
-          <!-- <nav>
+    <main>
+      <!-- <nav>
               <div id="navLogo">Logo</div>
               <div>About</div>
               <div>Products</div>
               <div>Contact</div>
               <img id="hamburger" onclick="dropdown()" src="http://www.divimove.de/img/frontpage/menu_white.png" />
           </nav> -->
-          <header>
-              <p class='site-name'>
-                  Nutrizione Consapevole
-              </p>
-              <p class='site-author'>
-                  Pasquale Sacco
-              </p>
-              <p class='site-description'>
-                Health e Fitness Blogger<br>
-                Ideatore di Nutrizione Consapevole<br>
-              </p>
-              <div class='round-button-container'>
-                  <div class="round-button">
-                    <a href="http://nutrizioneconsapevole.net">
-                        Scrivimi
-                    </a>  
-                </div>
-                <div class="round-button">
-                    <a href="http://nutrizioneconsapevole.net">
-                        Entra nel sito
-                    </a>
-                  </div>
-              </div>
-          </header>
-      </main>
-      <script src="./landing/scripts.js"></script>
+      <header>
+        <p class="site-name">
+          Nutrizione Consapevole
+        </p>
+        <p class="site-author">
+          Pasquale Sacco
+        </p>
+        <p class="site-description">
+          Health e Fitness Blogger<br />
+          Ideatore di Nutrizione Consapevole<br />
+        </p>
+        <div class="round-button-container">
+          <div class="round-button">
+            <a href="http://nutrizioneconsapevole.net">
+              Scrivimi
+            </a>
+          </div>
+          <div class="round-button">
+            <a href="http://nutrizioneconsapevole.net">
+              Entra nel sito
+            </a>
+          </div>
+        </div>
+      </header>
+    </main>
+    <script src="./landing/scripts.js"></script>
   </body>
 </html>
