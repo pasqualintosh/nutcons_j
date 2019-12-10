@@ -1,10 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="contact-form">
+    <form id="contact-form contact-form-ajax" action="" method="" class="form-validate form-horizontal well">
+      <fieldset>
+        <legend>Scrivimi una mail :)</legend>
+        <div class="control-group field-spacer">
+          <div class="control-label">
+            <span class="spacer"><span class="before"></span><span class="text"><label id="jform_spacer-lbl"
+                  class=""><strong class="red">*</strong> Campi obbligatori</label></span><span
+                class="after"></span></span>
+          </div>
+          <div class="controls"></div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <label id="jform_contact_name-lbl" for="jform_contact_name" class="hasPopover required" title=""
+              data-content="Your name." data-original-title="Name">
+              Come ti chiami<span class="star">&nbsp;*</span></label>
+          </div>
+          <div class="controls">
+            <input type="text" name="jform[contact_name]" id="jform_contact_name" value="" class="required" size="30"
+              required="required" aria-required="true" />
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <label id="jform_contact_email-lbl" for="jform_contact_email" class="hasPopover required" title=""
+              data-content="Email Address for contact." data-original-title="Email">
+              Email<span class="star">&nbsp;*</span></label>
+          </div>
+          <div class="controls">
+            <input type="email" name="jform[contact_email]" class="validate-email required" id="jform_contact_email"
+              value="" size="30" autocomplete="email" required="required" aria-required="true" />
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">
+            <label id="jform_contact_message-lbl" for="jform_contact_message" class="hasPopover required" title=""
+              data-content="Enter your message here." data-original-title="Message">
+              Messaggio<span class="star">&nbsp;*</span></label>
+          </div>
+          <div class="controls">
+            <textarea name="jform[contact_message]" id="jform_contact_message" cols="50" rows="10" class="required"
+              required="required" aria-required="true"></textarea>
+          </div>
+        </div>
+      </fieldset>
+      <div class="control-group">
+        <div class="controls">
+          <button class="btn btn-primary validate" type="submit">
+            Invia!
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>
