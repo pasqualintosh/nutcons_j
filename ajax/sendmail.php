@@ -24,7 +24,7 @@ try {
     $mail->Port       = 587;                                            // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('pasqualesacco1991@gmail.com', 'Pasquale Sacco');
+    $mail->setFrom($_POST['mail'], $_POST['name'] . " " . $_POST['surname']);
     $mail->addAddress('pasqualesacco1991@gmail.com', 'Pasquale Sacco');      // Add a recipient
     // $mail->addAddress('ellen@example.com');                    // Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
@@ -37,12 +37,12 @@ try {
 
     // Content
     $mail->isHTML(true);                                          // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Subject = 'Mail da nutrizioneconsapevole.com';
+    $mail->Body    = $_POST['body'];
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'La mail è stata inviata con successo!';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
