@@ -3557,3 +3557,12 @@ table.category tbody > tr td {
 .sp-retina-logo {
   max-width: 38%;
 }
+
+#jform_contact_message {
+  width: auto;
+  height: auto;
+}
+
+.display-none {
+  display: none;
+}

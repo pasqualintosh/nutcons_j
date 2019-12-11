@@ -6,64 +6,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
+
   <div class="contact-form">
-    <form id="contact-form contact-form-ajax" action="" method="" class="form-validate form-horizontal well">
-      <fieldset>
-        <legend>Scrivimi una mail :)</legend>
-        <div class="control-group field-spacer">
-          <div class="control-label">
-            <span class="spacer"><span class="before"></span><span class="text"><label id="jform_spacer-lbl"
-                  class=""><strong class="red">*</strong> Campi obbligatori</label></span><span
-                class="after"></span></span>
-          </div>
-          <div class="controls"></div>
-        </div>
-        <div class="control-group">
-          <div class="control-label">
-            <label id="jform_contact_name-lbl" for="jform_contact_name" class="hasPopover required" title=""
-              data-content="Your name." data-original-title="Name">
-              Come ti chiami<span class="star">&nbsp;*</span></label>
-          </div>
-          <div class="controls">
-            <input type="text" id="jform_contact_name" value="" class="required name" size="30" required="required"
-              aria-required="true" />
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="control-label">
-            <label id="jform_contact_email-lbl" for="jform_contact_email" class="hasPopover required" title=""
-              data-content="Email Address for contact." data-original-title="Email">
-              Email<span class="star">&nbsp;*</span></label>
-          </div>
-          <div class="controls">
-            <input type="email" class="validate-email required email" id="jform_contact_email" value="" size="30"
-              autocomplete="email" required="required" aria-required="true" />
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="control-label">
-            <label id="jform_contact_message-lbl" for="jform_contact_message" class="hasPopover required" title=""
-              data-content="Enter your message here." data-original-title="Message">
-              Messaggio<span class="star">&nbsp;*</span></label>
-          </div>
-          <div class="controls">
-            <textarea id="jform_contact_message" cols="50" rows="10" class="required message" required="required"
-              aria-required="true"></textarea>
-          </div>
-        </div>
-      </fieldset>
-      <div class="control-group">
-        <div class="controls">
-          <button class="btn btn-primary validate" type="submit">
-            Invia!
-          </button>
-        </div>
+    <fieldset>
+      <div class="control-group field-spacer">
+        <div class="control-label"><span class="spacer"><span class="text"><label id="jform_spacer-lbl" class=""><strong
+                  class="red">*</strong> Campi obbligatori</label></span></span></div>
+        <div class="controls"> </div>
       </div>
-    </form>
+      <div class="control-group">
+        <div class="control-label"><label id="jform_contact_name-lbl" class="hasPopover required" title=""
+            for="jform_contact_name" data-content="Your name." data-original-title="Name"> Come ti chiami<span
+              class="star"> *</span></label></div>
+        <div class="controls"><input id="jform_contact_name" class="required name" required="required" size="30"
+            type="text" value="" /></div>
+      </div>
+      <div class="control-group">
+        <div class="control-label"><label id="jform_contact_email-lbl" class="hasPopover required" title=""
+            for="jform_contact_email" data-content="Email Address for contact." data-original-title="Email"> Email<span
+              class="star"> *</span></label></div>
+        <div class="controls"><input id="jform_contact_email" class="validate-email required email" autocomplete="email"
+            required="required" size="30" type="email" value="" /></div>
+      </div>
+      <div class="control-group">
+        <div class="control-label"><label id="jform_contact_message-lbl" class="hasPopover required" title=""
+            for="jform_contact_message" data-content="Enter your message here." data-original-title="Message">
+            Messaggio<span class="star"> *</span></label></div>
+        <div class="controls"><textarea id="jform_contact_message" class="required message" cols="50"
+            required="required" rows="10">Scrivimi qui il contenuto del tuo messaggio</textarea></div>
+      </div>
+    </fieldset>
+    <div class="control-group">
+      <div class="controls"><button id="sendmail-btn" class="btn btn-primary validate"> Invia! </button></div>
+    </div>
   </div>
+  <div class="alert alert-success display-none"> </div>
+  <div class="alert alert-danger display-none"> </div>
+
+  <script>
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    jQuery(function ($) {
+
+      $('#sendmail-btn').click(function () {
+
+        if (validateEmail($('#jform_contact_email').val())) {
+          $.ajax({
+            method: "POST",
+            url: "./sendmail.php",
+            data: {
+              mail: $('#jform_contact_name').val(),
+              name: $('#jform_contact_email').val(),
+              body: $('#jform_contact_message').val()
+            }
+          })
+            .done(function (msg) {
+              console.log(msg);
+              if (msg.includes('successo')) {
+                $('div.alert-success').html("Mail spedita con successo")
+                $('div.alert-success').slideDown(300);
+              } else {
+                $('div.alert-danger').html("C'è stato un errore durante l'invio")
+                $('div.alert-danger').slideDown(300);
+              }
+            });
+        }
+        else {
+          $('div.alert-danger').html("La mail inserita non è valida")
+          $('div.alert-danger').slideDown(300);
+        }
+
+
+        // console.log($('#jform_contact_name').val())
+        // console.log($('#jform_contact_email').val())
+        // console.log($('#jform_contact_message').val())
+      })
+
+    });
+  </script>
+
 </body>
 
 </html>

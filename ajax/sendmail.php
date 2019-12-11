@@ -13,7 +13,7 @@ $mail = new PHPMailer(true);
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                              // Enable verbose debug output
+    $mail->SMTPDebug = 2;                              // Enable verbose debug output
     $mail->isSMTP();                                                    // Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                               // Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                           // Enable SMTP authentication
@@ -24,8 +24,9 @@ try {
     $mail->Port       = 587;                                            // TCP port to connect to
 
     //Recipients
-    $mail->setFrom($_POST['mail'], $_POST['name'] . " " . $_POST['surname']);
-    $mail->addAddress('pasqualesacco1991@gmail.com', 'Pasquale Sacco');      // Add a recipient
+    $mail->setFrom('pasqualesacco1991@gmail.com', 'Pasquale Sacco');      // Add a recipient
+    $mail->addAddress('pasqualesacco1991@gmail.com', 'Pasquale Sacco');
+    $mail->addReplyTo($_POST['mail'], $_POST['name']);      // Add a recipient
     // $mail->addAddress('ellen@example.com');                    // Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');
@@ -44,5 +45,5 @@ try {
     $mail->send();
     echo 'La mail è stata inviata con successo!';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
 }
